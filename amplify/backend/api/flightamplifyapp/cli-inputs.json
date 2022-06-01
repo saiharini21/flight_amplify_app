@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "flightamplifyapp",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/home/sreeharini/flight_amplify_app/amplify/backend/api/flightamplifyapp/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7
+    }
+  }
+}

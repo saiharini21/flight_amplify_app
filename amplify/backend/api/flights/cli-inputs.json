@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "paths": {
+    "/flights": {
+      "name": "/flights",
+      "lambdaFunction": "flightamplifyappcf36df30",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/admin": {
+      "name": "/admin",
+      "lambdaFunction": "flightamplifyapp632692dc",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

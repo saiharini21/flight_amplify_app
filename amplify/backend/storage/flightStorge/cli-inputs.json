@@ -1,0 +1,14 @@
+{
+  "resourceName": "flightStorge",
+  "policyUUID": "edc0d0d6",
+  "bucketName": "flight-storage",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

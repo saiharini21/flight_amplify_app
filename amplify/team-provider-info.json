@@ -14,6 +14,16 @@
     "categories": {
       "auth": {
         "flightamplifyapp0816f54b": {}
+      },
+      "function": {
+        "flightamplifyappcf36df30": {
+          "deploymentBucketName": "amplify-amplifye198e7144ef74-staging-80232-deployment",
+          "s3Key": "amplify-builds/flightamplifyappcf36df30-784471306737722b5859-build.zip"
+        },
+        "flightamplifyapp632692dc": {
+          "deploymentBucketName": "amplify-amplifye198e7144ef74-staging-80232-deployment",
+          "s3Key": "amplify-builds/flightamplifyapp632692dc-4d4b4937345745744655-build.zip"
+        }
       }
     }
   }
