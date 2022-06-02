@@ -18,6 +18,10 @@ function Find() {
   const [isedit,setIsedit]=useState(0);
   useEffect(() => {
     fetchFlights();
+     if(isedit)
+     {
+       
+     }
   }, [edit]);
 
   async function fetchFlights() {
@@ -31,15 +35,15 @@ function Find() {
    console.log(edit);
     await API.graphql({ query: updateFlightMutation, variables: { input: edit } });
     setFormData(initialFormState);
+    setIsedit(0);
     setEdit(initialedit);
 
-    setIsedit(0);
 
   }
   function displayFlight({id}) {
      const  currFlight=flights.filter(flight => flight.id===id);
+     setIsedit(1);
      setEdit({'id':currFlight[0].id,'name': currFlight[0].name, 'price':currFlight[0].price ,'to':currFlight[0].to ,'from':currFlight[0].from ,'time':currFlight[0].time ,'date':currFlight[0].date})
-      setIsedit(1);
 
     }
   async function deleteFlight({ id }) {
@@ -60,6 +64,7 @@ function Find() {
         value={edit.name}
         style={{width:'40%',margin:"1rem 0.4rem"}}
         name="name"
+        disabled = {(!isedit)? "disabled" : ""}
       />
    
    <label htmlFor="price" className=' ms-4 label me-2'>Price :</label>
@@ -69,6 +74,7 @@ function Find() {
         value={edit.price}
         style={{width:'40%',margin:"1rem 0.4rem"}}
         name="price"
+        disabled = {(!isedit)? "disabled" : ""}
 
       />
        <label htmlFor="to" className='label me-1'>Destination :</label>
@@ -78,14 +84,16 @@ function Find() {
         value={edit.to}
         style={{width:'40%',margin:"1rem 0.4rem"}}
         name="to"
+        disabled = {(!isedit)? "disabled" : ""}
 
       />
- <label htmlFor="from" className='label me-1'>Start :</label>
+   <label htmlFor="from" className='label me-1'>Start :</label>
         <input
         onChange={e => setEdit({ ...edit, 'from': e.target.value})}
         placeholder="Flight from"
         value={edit.from}
         style={{width:'40%',margin:"1rem 0.4rem"}}
+        disabled = {(!isedit)? "disabled" : ""}
 
       />
        <label htmlFor="date" className='ms-4 label me-1 '>Date :</label>
@@ -94,6 +102,7 @@ function Find() {
         placeholder="Flight date"
         value={edit.date}
         style={{width:'40%',margin:"1rem 0.4rem"}}
+        disabled = {(!isedit)? "disabled" : ""}
 
       />
        <label htmlFor="time" className='ms-4 label me-1'>Time :</label>
@@ -102,6 +111,7 @@ function Find() {
         placeholder="Flight time"
         value={edit.time}
         style={{width:'40%',margin:"1rem 0.4rem"}}
+        disabled = {(!isedit)? "disabled" : ""}
 
       />
       <div className='button-grp justify-content-center'>
