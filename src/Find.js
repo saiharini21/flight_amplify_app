@@ -1,40 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Amplify from 'aws-amplify';
 import  { API, graphqlOperation } from 'aws-amplify';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { listFlights } from './graphql/queries';
-import { createFlight as createFlightMutation,updateFlight as updateFlightMutation, deleteFlight as deleteFlightMutation } from './graphql/mutations';
+import { updateFlight as updateFlightMutation, deleteFlight as deleteFlightMutation } from './graphql/mutations';
 import {
   Link
 } from "react-router-dom";
-const initialFormState = { name: '', price:0 ,to:'',from:'',time:'',date:'' }
 const initialedit = {id:'', name: '', price:0 ,to:'',from:'',time:'',date:'' }
 
 function Find() {
   const [flights, setFlight] = useState([]);
-  const [formData, setFormData] = useState(initialFormState);
   const [edit,setEdit]=useState(initialedit);
   const [isedit,setIsedit]=useState(0);
   useEffect(() => {
     fetchFlights();
-     if(isedit)
-     {
-       
-     }
   }, [edit]);
 
   async function fetchFlights() {
     const apiData = await API.graphql(graphqlOperation(listFlights));
     const flightList=(apiData.data.listFlights.items);
-    console.log(flightList);
     setFlight(flightList);
   }
   async function updateFlight() {
     if (!edit.name || !edit.to || !edit.price||!edit.time||!edit.date) return;
-   console.log(edit);
     await API.graphql({ query: updateFlightMutation, variables: { input: edit } });
-    setFormData(initialFormState);
     setIsedit(0);
     setEdit(initialedit);
 
@@ -49,7 +39,6 @@ function Find() {
   async function deleteFlight({ id }) {
     const newFlightArray = flights.filter(flight => flight.id !== id);
     setFlight(newFlightArray);
-    
     await API.graphql({ query: deleteFlightMutation, variables: { input: { id } }});
   }
 

@@ -1,37 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Amplify from 'aws-amplify';
 import  { API, graphqlOperation } from 'aws-amplify';
 import { withAuthenticator } from '@aws-amplify/ui-react';
-import { listFlights } from './graphql/queries';
-import awsconfig from './aws-exports';
-import { createFlight as createFlightMutation,updateFlight as updateFlightMutation, deleteFlight as deleteFlightMutation } from './graphql/mutations';
+import { createFlight as createFlightMutation } from './graphql/mutations';
 import {
   Link
 } from "react-router-dom";
-Amplify.configure(awsconfig);
 const initialFormState = { name: '', price:0 ,to:'',from:'',time:'',date:'' }
-const initialedit = {id:'', name: '', price:0 ,to:'',from:'',time:'',date:'' }
 
 function Form() {
-  const [flights, setFlight] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
-  const [edit,setEdit]=useState(initialedit);
-  const [isedit,setIsedit]=useState(0);
-  useEffect(() => {
-    fetchFlights();
-  }, [edit]);
 
-  async function fetchFlights() {
-    const apiData = await API.graphql(graphqlOperation(listFlights));
-    const flightList=(apiData.data.listFlights.items);
-    console.log(flightList);
-    setFlight(flightList);
-  }
   async function createFlight() {
     if (!formData.name || !formData.to || !formData.price||!formData.time||!formData.date) return;
     await API.graphql({ query: createFlightMutation, variables: { input: formData } });
-    setFlight([ ...flights, formData ]);
     setFormData(initialFormState);
   }
 
