@@ -5,7 +5,9 @@ import  { API, graphqlOperation } from 'aws-amplify';
 import { withAuthenticator } from '@aws-amplify/ui-react';
 import { listFlights } from './graphql/queries';
 import { createFlight as createFlightMutation,updateFlight as updateFlightMutation, deleteFlight as deleteFlightMutation } from './graphql/mutations';
-
+import {
+  Link
+} from "react-router-dom";
 const initialFormState = { name: '', price:0 ,to:'',from:'',time:'',date:'' }
 const initialedit = {id:'', name: '', price:0 ,to:'',from:'',time:'',date:'' }
 
@@ -105,6 +107,10 @@ function Find() {
       <div className='button-grp justify-content-center'>
       <button className='btn btn-primary page2 ' onClick={updateFlight}>Update Flight</button>
       </div>
+      <div className='button-grp justify-content-center'>
+      <Link to="/" className='btn btn-primary page2 mt-2'> Create Page</Link>
+      </div>
+
    
  </div>
         <div className='disp-container'>

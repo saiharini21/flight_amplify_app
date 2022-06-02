@@ -6,7 +6,9 @@ import { withAuthenticator } from '@aws-amplify/ui-react';
 import { listFlights } from './graphql/queries';
 import awsconfig from './aws-exports';
 import { createFlight as createFlightMutation,updateFlight as updateFlightMutation, deleteFlight as deleteFlightMutation } from './graphql/mutations';
-
+import {
+  Link
+} from "react-router-dom";
 Amplify.configure(awsconfig);
 const initialFormState = { name: '', price:0 ,to:'',from:'',time:'',date:'' }
 const initialedit = {id:'', name: '', price:0 ,to:'',from:'',time:'',date:'' }
@@ -84,6 +86,7 @@ function Form() {
       />
      <button onClick={createFlight}  className='btn btn-primary submit'>Create Flight</button>
        </div>
+       <Link to="/display" className='btn btn-primary submit mt-2'> Details</Link>
   
     </div>
   );
